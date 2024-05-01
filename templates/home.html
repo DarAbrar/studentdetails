@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        Home Page
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        
+
+    </style>
+</head>
+
+<body>
+
+    {% block content %}
+    <label for="names">Select a name:</label>
+    {% csrf_token %}
+    <select id="names">
+        <option value="" selected disabled>Select a name</option>
+        {% for name in provided_names %}
+            <option value="{{ name }}">{{ name }}</option>
+        {% endfor %}
+    </select>
+    <h2>Assigned Candidates: </h2>
+    <div id="candidates-list">
+        <!-- Assigned candidates will be displayed here -->
+    </div>
+    <script>
+        $(document).ready(function() {
+            $('#names').change(function() {
+                var selectedName = $(this).val();
+                var csrftoken = $('[name=csrfmiddlewaretoken]').val();  // Get CSRF token
+                $.ajax({
+                    type: 'POST',
+                    url: '/get_assigned_candidates/',
+                    contentType: 'application/json',
+                    headers: {'X-CSRFToken': csrftoken},  // Include CSRF token in headers
+                    data: JSON.stringify({'selected_name': selectedName}),
+                    success: function(response) {
+                        $('#candidates-list').html(response.html_response);
+                    },
+                    error: function(xhr, errmsg, err) {
+                        console.log(xhr.status + ": " + xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        function toggleTextDecoration(checkbox) {
+            var row = checkbox.parentNode.parentNode;
+            if (checkbox.checked) {
+                row.style.textDecoration = 'line-through';
+            } else {
+                row.style.textDecoration = 'none';
+            }
+    
+            // Update the is_marked attribute of the corresponding candidate
+            var candidateId = checkbox.dataset.candidateId;
+            var isMarked = checkbox.checked;
+    
+            // Send AJAX request to update the server-side database
+            updateCandidateMark(candidateId, isMarked);
+        }
+    
+        function updateCandidateMark(candidateId, isMarked) {
+            // Send AJAX request to update the server-side database
+            // You can use Fetch API or jQuery AJAX here to send the request
+            // Example using Fetch API:
+            fetch('/update_candidate_mark/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}' // Assuming Django CSRF token is used
+                },
+                body: JSON.stringify({
+                    candidate_id: candidateId,
+                    is_marked: isMarked
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Candidate marked:', data);
+            })
+            .catch(error => {
+                console.error('Error marking candidate:', error);
+            });
+        }
+    </script>
+    
+    {% endblock %}
+
+</body>
+
+</html>

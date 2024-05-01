@@ -1,0 +1,77 @@
+body {
+    .btns{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        justify-content: center;
+        height: 100vh;
+        a {
+            text-decoration: none;
+            button {
+                padding: 10px 30px;
+                cursor: pointer;
+                border: none;
+                color: black;
+                background-color: cyan;
+                border-radius: 10px;
+                font-weight: 600;
+                font-size: 18px;
+            }
+        }
+    }
+
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        text-align: center;
+        padding: 8px;
+        border: 1px solid #dddddd;
+        cursor: pointer;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    body {
+        font-family: Arial, sans-serif;
+        
+        padding: 20px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    select {
+        width: 200px;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+        transition: border-color 0.3s ease;
+    }
+
+    select:focus {
+        outline: none;
+        border-color: #007bff;
+    }
+
+    select option {
+        padding: 10px;
+    }
+
+    select option[selected] {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    select option:disabled {
+        color: #ccc;
+    }
+
+}

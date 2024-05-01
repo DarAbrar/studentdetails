@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+    </title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div class="btns">
+        <a href="{{ request.scheme }}://{{ request.get_host }}/download_skillgap_excel/">
+            <button>Download Skill Gap Excel Sheet</button>
+        </a>
+        <a href="{{ request.scheme }}://{{ request.get_host }}/download_youthaspiration_excel"/>
+            <button>Download Youth Aspiration Excel Sheet</button>
+        </a>
+    </div>
+    
+</body>
+
+</html>

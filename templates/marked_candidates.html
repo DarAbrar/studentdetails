@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marked Candidates</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>Marked Candidates</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Mobile</th>
+                <th>Father's Name</th>
+                <th>Mother's Name</th>
+                <!-- Add more headers as needed -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for candidate in marked_candidates %}
+            <tr>
+                <td>{{ candidate.name }}</td>
+                <td>{{ candidate.mobile }}</td>
+                <td>{{ candidate.father_name }}</td>
+                <td>{{ candidate.mother_name }}</td>
+                <!-- Render more attributes as needed -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
