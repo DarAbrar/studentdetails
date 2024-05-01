@@ -14,8 +14,69 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
-        
-
+        body .btns {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            justify-content: center;
+            height: 100vh;
+          }
+          body .btns a {
+            text-decoration: none;
+          }
+          body .btns a button {
+            padding: 10px 30px;
+            cursor: pointer;
+            border: none;
+            color: black;
+            background-color: cyan;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 18px;
+          }
+          body table {
+            border-collapse: collapse;
+            width: 100%;
+          }
+          body th, body td {
+            text-align: center;
+            padding: 8px;
+            border: 1px solid #dddddd;
+            cursor: pointer;
+          }
+          body tr:nth-child(even) {
+            background-color: #f2f2f2;
+          }
+          body body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+          }
+          body label {
+            font-weight: bold;
+          }
+          body select {
+            width: 200px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            transition: border-color 0.3s ease;
+          }
+          body select:focus {
+            outline: none;
+            border-color: #007bff;
+          }
+          body select option {
+            padding: 10px;
+          }
+          body select option[selected] {
+            background-color: #007bff;
+            color: #fff;
+          }
+          body select option:disabled {
+            color: #ccc;
+          }/*# sourceMappingURL=style.css.map */
     </style>
 </head>
 
