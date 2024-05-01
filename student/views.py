@@ -103,6 +103,11 @@ from django.template.loader import render_to_string
 from django.middleware.csrf import get_token
 
 def get_assigned_candidates(request):
+    provided_names = [
+                'Henna Kazi', 'Andleeb Jaffar', 'Sehran', 'Inzimam', 
+                'Sameer', 'Nadeem', 'Sajid', 'Imtiyaz', 'Fiazaan', 
+                'Shahabbas', 'Sharik'
+            ]
     if request.method == 'POST':
         data = json.loads(request.body)
         selected_name = data.get('selected_name')
@@ -111,11 +116,7 @@ def get_assigned_candidates(request):
             candidates = Candidate.objects.exclude(candidate_name__in=MarkedCandidate.objects.values_list('name', flat=True))
 
             # Shuffle the candidates
-            provided_names = [
-                'Henna Kazi', 'Andleeb Jaffar', 'Sehran', 'Inzimam', 
-                'Sameer', 'Nadeem', 'Sajid', 'Imtiyaz', 'Fiazaan', 
-                'Shahabbas', 'Sharik'
-            ]
+            
             serialized_candidates = list(candidates)
             random.shuffle(serialized_candidates)
 

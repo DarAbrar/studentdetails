@@ -82,7 +82,6 @@
 
 <body>
 
-    {% block content %}
     <label for="names">Select a name:</label>
     {% csrf_token %}
     <select id="names">
@@ -91,6 +90,7 @@
             <option value="{{ name }}">{{ name }}</option>
         {% endfor %}
     </select>
+    <p>wait 30 - 40 seconds, to load the candidates</p>
     <h2>Assigned Candidates: </h2>
     <div id="candidates-list">
         <!-- Assigned candidates will be displayed here -->
@@ -158,7 +158,7 @@
         }
     </script>
     
-    {% endblock %}
+
 
 </body>
 
